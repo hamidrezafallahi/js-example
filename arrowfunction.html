@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Arrowfunction</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+//     function fun1(){
+//         return "hello"
+//     }
+//     fun2=function(){
+//         return "hamid"
+//     }
+// console.log(fun1());
+// console.log(fun2());
+    
+
+
+
+
+
+
+    // fun1=(a,b)=>console.log(a+b);
+    // fun1(2,4);
+
+
+
+    // fun5=()=>({name:"hamid",family:"fallahi",age:31})
+    // console.log(fun5())
+
+
+    // fun6=name=>console.log("hello" + name);
+    // fun6(":   ahmad");
+
+
+
+    // let fun7=function(){
+    //     console.log(arguments)
+    // };
+    // fun7(12,34,45,56,67,78,89,90);
+
+
+    // let fun7=()=>console.log(arguments)
+    // fun7(12,23,34,45,56,67,78)
+
+
+
+
+    // var post={
+    //     title:"Web Design",
+    //     tags:["html","css","js"],
+    //     showpostbyregularfunction(){
+    //         var thistemp=this;
+    //         // console.log(this.title)
+    //         console.log(this)
+    //         this.tags.forEach(function(tag){
+    //             console.log(thistemp.title+" : " +tag);
+    //         })
+    //     }
+    // }
+    // post.showpostbyregularfunction();
+
+
+
+    //     var post={
+    //     title:"Web Design",
+    //     tags:["html","css","js"],
+    //     showpostbyregularfunction(){
+    //         this.tags.forEach(function(tag){
+    //             console.log(this.title+" : " +tag);
+    //         }.bind(this))
+    //     }
+    // }
+    // post.showpostbyregularfunction();
+
+
+
+
+
+    //         var post={
+    //     title:"Web Design",
+    //     tags:["html","css","js"],
+    //     showpostbyarrowfunction(){
+    //         console.log(this)
+    //         this.tags.forEach((tag)=>console.log(this.title+" : " +tag));
+    //     }
+    // };
+    // post.showpostbyarrowfunction();
+
+
+
+    //             var post={
+    //     title:"Web Design",
+    //     tags:["html","css","js"],
+    //     showpostbyarrowfunction(){
+    //         console.log(this)
+    //         this.tags.forEach((tag)=>console.log(this.title+" : " +tag));
+    //     },
+    //     testfunc:()=>console.log(this.title),
+    //     testfunc:()=>console.log(this)
+    // };
+    // post.showpostbyarrowfunction();
+    // post.testfunc();
+
+
+
+
+    function fun1(a,b){
+        return a+b
+    }
+    console.log(fun1(10,20));
+    let fun2=new fun1(50,20);
+    console.log(fun2)
+
+
+    // let fun1=(a,b)=>a+b;
+    // console.log(fun1(10,20));
+    // console.log(new fun1(10,20))
+
+
+
+
+
+//     function fun1(a,a){
+//         console.log(a+a)
+//     }
+//     fun1(10,20);
+
+// let fun1=(a,a)=>console.log(a+a);
+// fun1(10,20)
+
+    </script>
+</body>
+</html>

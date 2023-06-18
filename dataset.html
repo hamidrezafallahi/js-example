@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dataset</title>
+    <style>
+    .hide{
+        display: none;
+    }
+    .show{
+        display: block;
+        width: 300px;
+        height: 100px;
+        background: yellow;
+        margin: 15px;
+    }
+    </style>
+</head>
+<body>
+    <!-- <div id="box1" data-first-name="hamidreza" data-last-name="falahi" data-age="31" data-city>
+
+    </div>
+    <button onclick="showinfo()">نمایش اطلاعات</button> -->
+
+
+
+    <div id="box1" class="hide">box1</div>
+    <div id="box2" class="hide">box2</div>
+    <div id="box3" class="hide">box3</div>
+
+    <button data-box-id="box1">showbox1</button>
+    <button data-box-id="box2">showbox2</button>
+    <button data-box-id="box3">showbox3</button>
+    <script>
+        let buttons=document.querySelectorAll("[data-box-id]")
+        buttons.forEach(btn=>{
+            btn.addEventListener("click",(event)=>{
+                const box=document.getElementById(btn.dataset.boxId);
+                box.classList.remove("hide");
+                box.classList.add("show");
+            });
+
+        });
+
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // function showinfo(){
+    //     const box1=document.getElementById("box1");
+    //     console.log(box1.dataset.firstName);
+    //     console.log(box1.dataset.lastName);
+    //     console.log(box1.dataset.age);
+    //     box1.dataset.cityLeave="tehran";
+    //     console.log(box1.dataset);
+    //     console.log(box1.dataset.cityLeave);
+    //     console.log(box1)
+
+    // }
+    // function showinfo(){
+    //     const box1=document.getElementById("box1");
+    //     console.log(box1.dataset);
+    //     box1.dataset.city="malayer"
+    //     console.log(box1.dataset);
+    //     delete box1.dataset.city;
+    //     console.log(box1.dataset);
+    //     if("id" in box1.dataset===false){
+    //         box1.dataset.id="34";
+    //         console.log(box1.dataset)
+    //     }
+    //     if("age" in box1.dataset===false){
+    //         box1.dataset.age="43";
+    //         console.log(box1.dataset)
+    //     }
+    // }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>capturing and bubbling</title>
+    <style>
+    #box1{
+        background: red;
+        width: 200px;
+        height: 200px;
+    }
+    #box2{
+        background: green;
+        width: 150px;
+        height: 150px;
+    }
+    #box3{
+        background: blue;
+        width: 100px;
+        height: 100px;
+    }
+    #box4{
+        background: blue;
+        width: 400px;
+        height: 200px;
+    }
+    .mainstyle{
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <!-- <div id="box1" class="mainstyle">
+        <div id="box2" class="mainstyle">
+            <div id="box3" class="mainstyle">
+                mehdi
+            </div>
+        </div>
+    </div> -->
+
+
+<!-- //////////////////////////////////////////////////////////////// -->
+
+
+    <!-- <div id="box1" class="mainstyle">
+        <div id="box2" class="mainstyle">
+             <div id="box3" class="mainstyle" onclick="event.stopImmediatePropagation();">
+                  <! جلوگیری میکند از انتشار بابلینگ و اطلاع رسانی به والد در خصوص رویداد کلیک 
+                mehdi-->
+            <!-- </div>
+        </div>
+    </div> --> 
+<!-- //////////////////////////////////////////////////////////////// -->
+<div id="box4" class="mainstyle">
+    <form action="" id="myForm">
+        <button data-action="create">درج</button>
+        <button data-action="delete">حذف</button>
+        <button data-action="update">ویرایش</button>
+        <button data-action="select">انتخاب</button>
+    </form>
+</div>
+    <script>
+    class EventHandler{
+    constructor(myForm){
+        this.__myForm=myForm;
+        this.clickHandler();
+
+    }
+    clickHandler(){
+            this.__myForm.addEventListener("click",function(){
+                event.preventDefault();// این تابع قابلیت پیشفرض رو از آیتم کلیک شده میگیرد
+                console.log("click on : "+ event.target.dataset.action);
+                console.log("current target  : "+ event.currentTarget.id);
+            });
+        }
+}
+new EventHandler(myForm);
+    /////////////////////////////////////////////////////////////////////////
+    // let box1=document.getElementById("box1");
+    // box1.onclick=(event)=>{
+    //     console.log(this);
+    //     event.target.style.background="yellow";
+    //     event.target.style.color="black";
+    //     alert("target : "+ event.target.id+"\nthis : "+this.id);
+    //     event.target.style.background="";
+    //     event.target.style.color="";
+    // };
+    // /////////////////////////////////////////////////////////
+    // let box1=document.getElementById("box1");
+    // box1.onclick=function(event){
+    //     console.log(this);
+    //     event.target.style.background="yellow";
+    //     event.target.style.color="black";
+    //     alert("target : "+ event.target.id+"\nthis : "+this.id+"\ncurrent target : "+event.currentTarget.id);
+    //     event.target.style.background="";
+    //     event.target.style.color="";
+    // };
+    ///////////////////////////////////////////////////////////////////////////
+    // var boxes = document.querySelectorAll("div");
+    // console.log(boxes);
+    // for (let i =0;i<=boxes.length;i++){
+    //     const box=boxes[i];
+    //     box.addEventListener("click",(event)=>alert("capturing : "+box.id),true);/////true means capturing format
+    //     box.addEventListener("click",(event)=>alert("bubbling : "+box.id));
+    //         }
+    ////////////////////////////////////////////////////////////////////////
+    // let box1=document.getElementById("box1");
+    // box1.onclick=function(event){
+    //     console.log(this);
+    //     event.target.style.background="yellow";
+    //     event.target.style.color="black";
+    //     alert("target : "+ event.target.id+"\nthis : "+this.id+"\ncurrent target : "+event.currentTarget.id);
+    //     event.target.style.background="";
+    //     event.target.style.color="";
+    // };
+    ////////////////////////////////////////////////////////////////////////
+
+    </script>
+</body>
+</html>

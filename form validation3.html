@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form validation 3</title>
+    <style>
+    form{
+        direction: rtl;
+        width: 600px; 
+        margin: 5% auto;
+    }
+    table{
+        width: inherit;
+        border: 1px solid gray;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    h2{
+
+    }
+    input{
+
+    }
+    td[colspan="2"]{
+        text-align: center;
+    }
+    .error{
+        border-color: red;
+    }
+    .display-hide{
+        display: none;
+    }
+    .display-show{
+        display: block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"],
+    select,
+    textarea{
+        width: 100%;
+        height: 25px;
+        margin: 10px 0;
+    }
+    </style>
+</head>
+<body>
+    <form action=""  id="registerform"name="registerform">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <h2>فرم ثبت نام</h2>
+                </td>
+            </tr>
+            <tr>
+                <td> <label for="fname">نام</label></td>
+                <td>
+                    <input type="text" id="fname" name="fname" autocomplete="off" data-validation="notempty">
+                    <div style="color:red" id="validate-fname" class="display-hide"></div>
+                </td>
+            </tr>
+            <tr>
+                <td> <label for="lname">نام خانوادگی</label></td>
+                <td>
+                    <input type="text"id="lname" name="lname"autocomplete="off"data-validation="notempty">
+                    <div style="color:red" id="validate-fname" class="display-hide"></div>                
+                </td>
+            </tr>
+
+            <tr>
+                <td> <label for="email">ایمیل</label></td>
+                <td>
+                    <input type="email"id="email" name="email"autocomplete="off"data-validation="notempty isemail">
+                    <div style="color:red" id="validate-fname" class="display-hide"></div>                
+                </td>
+            </tr>
+            <tr>
+                <td> <label for="password">رمز ورود</label></td>
+                <td>
+                    <input type="password"id="password" name="password"data-validation="ispassword">
+                    <div style="color:red" id="validate-fname" class="display-hide"></div>                
+                </td>
+            </tr>
+            <tr>
+                <td> <label for="cities">شهرستان</label></td>
+                <td>
+                    <select name="cities" id="cities">
+                        <option value="0" selected>یک شهر انتخاب کنید</option>
+                        <option value="1">تهران</option>
+                        <option value="2">ملایر</option>
+                        <option value="3">خوی</option>
+                        <option value="4">اراک</option>
+                        <option value="5">کاشان</option>
+                    </select>               
+                </td>
+            </tr>
+            <tr>
+                <td> <label for="relation">وضعیت تاهل</label></td>
+                <td>
+                    <label for="relation">مجرد</label>
+                    <input type="radio"id="radio1" name="marital" value="single">
+                    <label for="relation">متاهل</label>
+                    <input type="radio"id="radio2" name="marital" value="married">
+                </td>
+            </tr>
+            <tr>
+                <td> <label for="description">توضیحات</label></td>
+                <td>
+                    <textarea name="description" id="description" cols="30" rows="7"></textarea>
+                </td>
+            </tr>
+            <tr><td><input type="submit" name="submit" id="submit" value="ثبت نام"></td></tr>
+            
+        </table>
+    </form>
+
+
+    <script>
+        class formvalidator{
+            constructor(myform){
+                this.__myform=myform;
+                this.submithandler();
+                this.focushandler();
+                this.notempty(event.target)
+                this.isemail(event.target)
+                this.ispassword(event.target)
+            }
+            submithandler(){
+                this.__myform.addEventListener("submit",(event) =>{
+                    event.preventDefault();
+                })
+            };
+            focushandler(){
+                this.__myform.addEventListener('focusin',(event) => {
+
+                });
+                this.__myform.addEventListener('focusout',(event) => {
+                    let datasetvalid=event.target.dataset.validation;
+                    if(datasetvalid){
+                        let validatearray=datasetvalid.split(" ");
+                        for (let index = 0; index < validatearray.length; index++) {
+                            const func = validatearray[index];
+                            var message = this[func](event.target);
+                            var sibling = event.target.nextElementSibling;
+                            sibling.innerHTML += message + "<br>";
+                            if(message.length > 0 ) {
+                                sibling.classList.remove('display-hide');
+                            }else{
+                                sibling.classList.add('display-hide')
+
+                            };
+                        }
+
+                    }
+
+                    // var message = this.notempty(event.target)
+                    // var sibling = event.target.nextElementSibling;
+                    // sibling.innerText=message;
+                    // if(message.length > 0 ) {
+                    //    sibling.classList.remove('display-hide');
+                    // }else{
+                    //     sibling.classList.add('display-hide')
+
+                    // };
+                });
+            }
+
+            notempty(element){
+                if(element.value===""){
+                    return "این فیلد نباید خالی باشد"
+                }
+                return "";
+            }
+            isemail(element){
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if(!re.test(element.value)){
+                return "قالب ایمیل صحیح نمیباشد";
+                }
+                return "";
+            }
+            ispassword(element){
+                const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=..{8,})");
+                if(!re.test(element.value)){
+                    return "قالب رمز عبور نا معتبر میباشد"
+                }
+                return "";
+            }
+
+
+
+        }
+        var registerform=document.getElementById("registerform");
+        new formvalidator (registerform);
+    </script>
+</body>
+</html>

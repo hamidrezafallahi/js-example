@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>localstorage</title>
+    <style>
+    .mx-auto{
+        /* margin: 0 48px; */
+        text-align: center;
+    }
+    .p{
+        width: 200px;
+        background: lightgray;
+        height: 40px;
+        text-align: center;
+        margin:auto;
+    }
+    .btn{
+        background: rgb(33, 71, 196);
+        padding: 10px;
+        border-radius: 30px;
+        color: white;
+        
+
+    }
+    </style>
+</head>
+<body>
+    <div class="mx-auto">
+        <textarea name="" id="text" cols="100" rows="7"></textarea><br>
+        <p class="p" id="p"></p><br>
+        <button class="btn" onclick="fullname()">setfullname</button><br>
+        <button class="btn" onclick="settext()">settext</button><br>
+        <button class="btn" onclick="gettext()">gettext</button><br>
+        <button class="btn" onclick="showall()">showall</button><br>
+    </div>
+
+
+    <script>
+               
+    function fullname(){
+        var fullname="hamidreza fallahi"
+        localStorage.setItem("fullname",fullname)
+    }
+        function settext(){
+        var set=document.getElementById("text").value;
+        window.localStorage.setItem("text",set);
+    }
+    function gettext(){
+        var get=localStorage.getItem("text")
+        document.getElementById("p").innerText=get;
+    }
+    function showall(){
+        for (let i = 0; i < localStorage.length; i++) {
+            const element = localStorage.key(i);
+            const item = localStorage.getItem(element)
+            console.log(item)
+            
+        }
+    }
+    </script>
+</body>
+</html>

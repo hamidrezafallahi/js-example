@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>errors try and catch</title>
+</head>
+<body>
+    
+    <script>
+//try{
+//console.log("start of try");
+//x;  refrence error
+//var x=120:  syntax error
+//var arr= new Array(-2);  range error
+//var x =document.getElementById();    type error
+//fun1(5)    internal error infinity
+
+//console.log("end of try");
+//}catch(err){
+//console.log("Error")
+//console.log(err)
+// console.log(err.name)
+// console.log(err.message)
+// console.log(err.stack)
+//}finally{
+//     console.log("Finally")
+// }
+// console.log("Hello")
+// function fun1(n){
+//     fun1(n+1)
+// }
+//////////////////////////////////////////////////////////////////
+// try{
+//     console.log("start of try");
+//     x;
+//     console.log("end of try");
+// }catch(err){
+//     if (err instanceof ReferenceError){
+//         console.log("error is refrence error")
+//     }else if (err instanceof SyntaxError){
+//         console.log("error is syntax error")
+//     }else if (err instanceof RangeError){
+//         console.log("error is RangeError")
+//     }else if (err instanceof InternalError){
+//         console.log("error is InternalError")
+//     }
+// }
+/////////////////////////////////////////////////////////////////////////
+// try{
+// var age = parseInt(prompt("inter your age"))
+// if(age<18){
+//     throw new RangeError("سن شما کمتر از 18 سال است ")
+// }else if(age>45){
+//     throw new SyntaxError("سن شما بیشتر از 45 سال است ")
+// }else{
+//     console.log("سن شما : "+age)
+// }
+// }catch(err){
+// console.log(err)
+// }
+////////////////////////////////////////////////////////////////////////
+class validationError extends Error{
+    constructor(message){
+        super(message);
+        this.name="hamid Error";
+    }
+}
+try{
+var age = parseInt(prompt("inter your age"))
+if(age<18){
+    throw new validationError("سن شما کمتر از 18 سال است ")
+}else if(age>45){
+    throw new validationError("سن شما بیشتر از 45 سال است ")
+}else{
+    console.log("سن شما : "+age)
+}
+}catch(err){
+    console.log(err)
+}
+    </script>
+</body>
+</html>

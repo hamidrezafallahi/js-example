@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rest operator</title>
+</head>
+<body>
+    
+
+    <script>
+
+///rest operator ///////
+
+
+
+    // function getnames(name1,name2,...othernames){
+    //     console.log(name1)
+    //     console.log(name2)
+    //     console.log(othernames)
+    // }
+    // getnames("ali","mohammad","hassan","hamid")
+
+
+    // const [name,family,...otherinfo]=["hamid","fallahi",31,"tehran"]
+    // console.log(name)
+    // console.log(family)
+    // console.log(otherinfo)
+
+
+    // const{name,family,...otherinfo}={
+    //     name:"hamid",
+    //     family:"fallahi",
+    //     age:31,
+    //     city:"tehran"
+    // }
+    //     console.log(name)
+    // console.log(family)
+    // console.log(otherinfo)
+
+
+
+    /////// spread operator /////////////
+    // function sum(a,b,c,d){
+    //     return a+b+c+d;
+    // }
+    // const numbers=[10,20,30,40]
+    // console.log(sum(...numbers))
+    // fullname={
+    //     name:"hamidreza",
+    //     family:"fallahi",
+    //     age:31
+    // }
+    // person={
+    //     ...fullname,
+    //     website:"https:hamidrezafallahi.com"
+    // }
+    // console.log(person)
+
+
+    /////// arguments /////////////
+
+
+
+    // function setnames (name1,name2){
+    //     console.log(name1)
+    //     console.log(name2)
+    //     console.log(arguments)
+    // }
+    // setnames("mehdi","ali","hassan")
+
+
+
+
+    function getmax(){
+        let max = arguments[0];
+        for (let i=0;i<arguments.length;i++){
+            if(arguments[i]>max){
+                max=arguments[i];
+            }
+
+        }
+        return max
+    }
+    console.log(getmax(12,34,46,75,34,65,124,97654,23345,77,5,4,3,3,5,6,78))
+    
+    </script>
+</body>
+</html>

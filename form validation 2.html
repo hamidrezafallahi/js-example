@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form validation 2</title>
+    <style>
+        body{
+            margin: 0;
+            padding:0;
+        }
+    .container{
+        width: 70%;
+        margin: 0 auto;
+        justify-content: center;
+        background: radial-gradient(circle, rgba(148,187,233,1) 0%, rgba(105,17,126,1) 57%, rgba(251,45,135,1) 100%);
+    }
+    form{
+
+        width: 60%;
+        margin: 0 auto;
+        padding:  7%;
+        direction: rtl;
+        justify-content: center;
+    }
+    .btn{
+        width:20%;
+        margin: 1rem 40%;
+        padding:5px 10px;
+        background:rgb(79, 123, 165);
+        color: #FFF;
+        border: 1px solid blue;
+        border-radius: 5px;
+    }
+    fieldset{
+        height: 450px;
+    }
+    div{
+        margin: 1rem auto;
+        width: 50%;
+    }
+    #username{
+        margin-top: 50px;
+    }
+    input{
+        height: 1.5rem;
+    }
+    legend{
+        color: #fff;
+    }
+    .form-control{
+
+    }
+    .form-control input:focus{
+        outline: none;
+    }
+    .form-control.error input{
+        border-color: red;
+    }
+    .form-control.success input{
+        border-color: greens;
+    }
+
+    </style>
+</head>
+<body>
+        <div class="container">
+            <form action="GET"  class="form-control"id="form-control">
+                <fieldset>
+                    <legend>
+                        <label>فرم ثبت نام </label>
+                    </legend>
+                    <div>
+                        <input type="text" id="username" name="username" autocomplete="off" placeholder=" نام کاربری:" size="40"><br>
+                        <span></span>
+                    </div>
+                    <div>
+                        <input type="text" id="email" name="email" autocomplete="off" placeholder="آدرس ایمیل" size="40"><br>
+                        <span></span>
+                    </div>
+                    <div>
+                        <input type="password" id="pass" name="pass" placeholder="رمز عبور" size="40"><br>
+                        <span></span>
+                    </div>
+                    <div>
+                        <input type="password" id="repass" name="repass" placeholder="تکرار رمز عبور" size="40"><br>
+                        <span></span>
+                    </div>
+                    <button class="btn">ثبت نام </button>
+                </fieldset>
+            </form>
+        </div>
+    <script>
+    var form = document.getElementById("form-control");
+    var usename = document.getElementById("username")
+    var email = document.getElementById("email")
+    var pass = document.getElementById("pass")
+    var repass = document.getElementById("repass")
+    /////////////////////////////////////////////////////////////////////
+const isrequired=(str) =>str.trim()===""?false:true;
+const isbetween=(str,min,max) =>str.trim().length<min || str.trim().length>max ?false:true;
+const ispassword=(str) =>{
+    const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=..{8,})");
+    return re.test(str);
+};
+const isemail = (str) =>{
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(str);
+}
+const isconfirmpassword = (pass,repass) => pass!==repass ? false : true;
+
+//////////////////////////////////////////////////////////////////////////
+
+function showerror (input,message){
+    var parent = input.parentElement;
+    var span =parent.querySelector("span");
+    span.innerText=message;
+}
+
+
+
+    ////////////////////////////////////////////////////////////////////
+    function checkusername(){
+        if(!isrequired (username.value.trim())){
+            showerror(username,"این فیلد نباید خالی باشد")
+            return false;
+        }else if(!isbetween(username.value,6,15)){
+            showerror(username,"این فیلد باید بین 6 الی 15 کاراکتر باشد")
+            return false;
+        }
+        showerror(username,"")
+        return true;
+    };
+
+
+    function checkemail(){
+    if(!isrequired(email.value.trim())) {
+        showerror(email,"این فیلد نباید خالی باشد")
+        return false;
+    }else if(!isemail(email.value.trim())){
+        showerror(email,"قالب اصلی ایمیل رعایت نشده ")
+        return false;
+    }
+    showerror(email,"")
+    return true;
+};
+
+
+    function checkpass(){
+        if(!isrequired(pass.value)){
+            showerror(pass,"این فیلد نباید خالی باشد")
+            return false;
+        }else if(!ispassword(pass.value)){
+            showerror(pass," پسوورد شما ضعیف است لطفا از کاراکتر های دیگر نیز استفاده کنید")
+            return false;
+        }
+        showerror(pass,"")
+        return true;
+    };  
+
+
+    function checkrepass(){
+        var password=pass.value;
+        var repassword=repass.value;
+        if(!isconfirmpassword(password,repassword)){
+            showerror(repass,"با رمز عبور ابتدایی یکی نیست")
+            return false;
+        }
+        showerror(repass,"")
+        return true;
+    };
+
+
+////////////////////////////////////////////////////////////////////
+
+form.addEventListener('input', function(event){
+    switch (event.target.id){
+        case "username":
+            checkusername()
+            break;
+        case "email":
+            checkemail()
+            break;
+        case "pass":
+            checkpass()
+            break;
+        case "repass":
+            checkrepass()
+            break;        
+
+    }
+console.log(event.target.id)
+});
+////////////////////////////////////////////////////////////////////
+    form.addEventListener("submit",function(event){
+        event.preventDefault();
+        if( checkusername() && checkemail() && checkpass() && checkrepass()){
+            console.log(form);
+            this.submit();
+        }
+    });
+    </script>
+</body>
+</html>

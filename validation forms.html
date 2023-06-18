@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>validation forms</title>
+    <style>
+        form{
+            width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        fieldset,
+        button {
+            width: 100%;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],button{
+            height: 30px;
+        }
+        input:focus{
+            outline: none;
+        }
+        input:invalid{
+            box-shadow: 0px 0px 3px 1px #fa6b6b;
+        }
+        input[type="number"]{
+            box-shadow: 0px 0px 3px 2px #ff29bf;
+        }
+        input:focus:invalid{
+            box-shadow: 0px 0px 6px 1px #ffbf00;
+        }
+    </style>
+</head>
+<body>
+    <form action="" class="form" novalidate>
+        <div>
+            <label for="name">
+                <span class="required-star">*</span>نام
+            </label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="family">
+                <span class="required-star">*</span>نام خانوادگی
+            </label>
+            <input type="text" id="family" name="family" required>
+        </div>
+        <div>
+            <fieldset disabled="disabled">
+                <legend>
+                    <span class="required-star">*</span>وضعیت تاهل
+                </legend>
+                <input type="radio" name="marital" id="r1" value="false" required>
+                <label for="r1">مجرد</label>
+                <input type="radio" name="marital" id="r2" value="true" required>
+                <label for="r2">متاهل</label>
+            </fieldset>
+        </div>
+        <div>
+            <label for="age">سن</label>
+            <input type="number" min="12" max="100" id="age" name="age"  pattern="\d+" >
+        </div>
+        <div>
+            <label for="age">ورزش مورد علاقه</label>
+            <input type="text" id="sport" name="sport" list="sports" pattern="شطرنج|تکواندو|کشتی|فوتبال|والیبال|اسکی" required>
+            <datalist id="sports">
+                <option value="1">شطرنج</option>
+                <option value="2">تکواندو</option>
+                <option value="3">کشتی</option>
+                <option value="4">فوتبال</option>
+                <option value="5">والیبال</option>
+                <option value="6">اسکی</option>
+            </datalist>
+        </div>
+        <div>
+            <label for="email">آدرس ایمیل</label>
+            <input type="email" id="email" name="email" pattern="[a-z0-9._%]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        </div>
+        <div>
+            <button>ثبت نام</button>
+        </div>
+    </form>
+
+
+    <script>
+    
+    </script>
+</body>
+</html>

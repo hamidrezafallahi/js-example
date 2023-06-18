@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form validation 2</title>
+    <style>
+        body{
+
+        margin:0px ;
+        padding:0px ;
+        direction: rtl;
+        }
+    .container-fluid{
+
+        margin:7% auto ;
+        padding:0px ;
+        width: 60%;
+    }
+    .container{
+        margin:0px auto ; 
+        padding: 10px;
+        width: 80%;
+    }
+    label,input,span,button{
+        margin: 5px;
+        padding: 5px;
+    }
+    input{
+
+    }
+    span{
+        font-size: 120%;
+        color: rgb(207, 25, 25);
+
+    }
+    button{
+
+    }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <form action="" novalidate id="form_1"name="form1">
+                <fieldset >
+                    <legend>
+                            <label for="email">آدرس ایمیل خود را وارد کنید</label><br>
+                    </legend>
+                        <input type="email" minlength="12" maxlength="20"name="email" id="email" class="input" required autocomplete="off"><br>
+                    <span id="errorMessage"></span><br>
+                    <button >ثبت نام</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script>
+        /////////////////finding by get element by id/////////////////////////////
+        // var form = document.getElementById("form_1");
+        // form.style.background="red";
+        //////////////////finding by array////////////////////////////////////////
+        // var form =document.forms[0];
+        // form.style.background="yellow";
+        //////////////////finding by name/////////////////////////////////////////
+        // var form=form1;
+        // form.style.background="green";
+        //////////////////finding by name/////////////////////////////////////////
+        // var form=form1;
+        // form.style.background="green";
+        //////////////////finding by id///////////////////////////////////////////
+        // var form=form_1;
+        // form.style.background="blue";
+        //////////////////finding by name in array///////////////////////////////////////////
+        var form=document.forms.form1;
+        var email=form.email;
+        var error= document.getElementById("errorMessage");
+        form.addEventListener("submit",(event) =>{
+            event.preventDefault();
+            validate(email);
+
+
+        });
+    function validate (input){
+     var validity= input.validity;
+     console.log(validity)
+     if(validity.valueMissing){
+         input.setCustomValidity("این فیلد نباید خالی باشد");
+         input.reportValidity();
+         //error.innerText="این فیلد نباید خالی باشد";
+     }
+     else if(validity.typeMismatch){
+        input.setCustomValidity("قالب ایمیل رعایت نشده");
+         input.reportValidity();
+        //error.innerText="قالب ایمیل رعایت نشده";
+     }     
+     else if(validity.tooShort || validity.tooLong){
+        input.setCustomValidity("تعداد کاراکتر های ایمیل باید بین 12 تا 20 کاراکتر باشد");
+         input.reportValidity();
+        //error.innerText="تعداد کاراکتر های ایمیل باید بین 12 تا 20 کاراکتر باشد";
+     }
+     else{
+        //error.innerText="";
+        form.submit();
+     }
+ }
+
+    </script>
+</body>
+</html>

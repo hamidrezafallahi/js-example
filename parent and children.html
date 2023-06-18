@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ui id="list">
+        <li id="item1">red</li>
+        <li id="item2">green</li>
+        <li id="item3">blue</li>
+        <li id="item4">yellow</li>
+        <li id="item5">white</li>
+        <li id="item6">black</li>
+    </ui>
+
+    <script>
+        // var newli=document.createElement("li");
+        // var text=document.createTextNode("pink");
+        // newli.appendChild(text);
+        // var list1=document.getElementById("list");
+        // var target=document.getElementById("item3");
+        // list1.insertBefore(newli,target);
+        // newli.setAttribute("id","item2.5")
+        // ////////////////////////////////////////////////////////////////////
+        // var list1=document.getElementById("list");
+        // var target=document.getElementById("item5");
+        // var newli=document.createElement('li');
+        // newli.textContent='gray ';
+        // console.log(newli)
+        // list1.insertBefore(newli,target);
+        /////////////////////////////////////////////////////////////////////////
+        // var list1=document.getElementById("list");
+        // var target=document.getElementById("item6");
+        // var newli=document.createElement('li');
+        // newli.textContent='gray ';
+        // console.log(newli)
+        // list1.insertBefore(newli,target.nextElementSibling);
+        //////////////////////////////////////////////////////////////////////////
+        // var list1=document.getElementById("list");
+        // var newli=document.createElement('li');
+        // newli.textContent='gray ';
+        // list1.append(newli);
+        // list1.prepend(newli);
+        ///////////////////////////////////////////////////////////////////////////
+        // var list1=document.getElementById("list");
+        // var newli=document.createElement('li');
+        // newli.textContent='gray ';
+        // list1.appendChild(newli);
+        // list1.appendChild(newli);
+        // list1.appendChild(newli);
+        // list1.appendChild(newli);
+        // list1.appendChild(newli);
+        // for(let i=0;i<=10;i++){
+        //     var newli=document.createElement('li');
+        //     newli.textContent='gray '+ i ;
+        //     list1.append(newli )
+        // }
+    ///////////////////////////////////////////////////////////////////////////////////////
+        // var list1=document.getElementById("list");
+        // var target=document.getElementById("item4");
+        // var target2=document.getElementById("item2");
+        // var newli=document.createElement('li');
+        // newli.textContent='gray ';
+        // list1.replaceChild(newli,target);
+    // list1.replaceChild(target,target2);
+    ///////////////////////////clonenode//////////////////////////////////////////////////////////
+    var list1=document.getElementById("list")
+    var newlist=list1.cloneNode(true);
+    newlist.id="new";
+    // document.body.appendChild(newlist);
+    var target=document.getElementById("item4")
+    target.appendChild(newlist);
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Element child and siblings and parent and next and last and first and previous</title>
+</head>
+<body>
+    <table border="1" id="table" >
+        <tr>
+            <td>ali</td>
+            <td>ahmad</td>
+            <td>abbas</td>
+            <td>reza</td>
+        </tr>
+        <tr>
+            <td>tarane</td>
+            <td>sara</td>
+            <td>sorush</td>
+            <td>essi</td>
+        </tr>
+        <tr>
+            <td>green</td>
+            <td>yellow</td>
+            <td>dark</td>
+            <td>red</td>
+        </tr>
+    </table>
+    <script>
+    var table=document.getElementById("table");
+    console.log(table);
+
+    var tbody=table.firstElementChild;
+    console.log(tbody);
+
+    var trow=tbody.firstElementChild;
+    var lastTd=trow.lastElementChild;
+    console.log(lastTd.innerText);
+    lastTd.style.background="red"
+    
+     
+    
+    </script>
+</body>
+</html>
